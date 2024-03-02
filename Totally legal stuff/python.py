@@ -2,7 +2,7 @@ from bs4 import BeautifulSoup
 import requests
 import regex
 
-url = "https://kaskapa.github.io/Help_me_latvia/"
+url = "https://kaskapa.github.io/Help_me_latvia/Totally%20legal%20stuff/"
 
 requst = requests.get(url)
 
@@ -12,14 +12,31 @@ p_tags = [p.text.strip() for p in soup.find_all("p")]
 
 text_Be_like = " ".join(p_tags)
 
-sentences = regex.split(r'(?<=[^\p{Lu}].[.?!]) +(?=[\p{Lu}])', text_Be_like)
+#sentences = regex.split(r'(?<=[^\p{Lu}].[.?!]) +(?=[\p{Lu}«])', text_Be_like)
+sentences = regex.split(r'(?<=[^\p{Lu}].[.?!»]) +(?=[\p{Lu}«\p{Lu}])', text_Be_like)
 
-file = open("wrong.txt", "a", encoding="utf-8")
+temp = ""
+
+file = open("correct.txt", "a", encoding="utf-8")
 for sentence in sentences:
+    if(len(sentence) > 400):
+        continue
+    if(sentence.find("«") != -1 and sentence.find("»") != -1):
+        print(sentence)
+    elif(sentence.find("«") != -1):
+        temp += sentence + " "
+        continue
+    elif(temp != "" and sentence.find("»") == -1):
+        temp += sentence + " "
+        continue
+    elif(sentence.find("»") != -1 and temp != ""):
+        temp += sentence
+        sentence = temp
+        temp = ""
     print(sentence)
-    sentence = sentence.replace(",", "")
-    sentence = sentence.replace("-", "")
-    sentence = sentence.replace("— ", "")
-    sentence = sentence.replace(";", "")
-    sentence = sentence.replace(":", "")
+    # sentence = sentence.replace(",", "")
+    # sentence = sentence.replace("- ", "")
+    # sentence = sentence.replace("— ", "")
+    # sentence = sentence.replace(";", "")
+    # sentence = sentence.replace(":", "")
     file.write(sentence + "\n")

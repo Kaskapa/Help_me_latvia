@@ -1,0 +1,415 @@
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100dvh;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins", sans-serif;
+    font-size: 10px;
+}
+
+h1{
+    font-size: 3.5rem;
+    margin: 0;
+}
+
+p{
+    font-size: 1.5rem;
+}
+
+main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 5rem;
+    text-align: center;
+}
+
+button{
+    padding: 0.5rem 2rem;
+    font-size: 2rem;
+    border: 2px solid black;
+    box-shadow: 5px 5px 0px 0px black;
+    border-radius: 5px;
+    background-color: white;
+    color: black;
+    cursor: pointer;
+}
+
+button:hover{
+    box-shadow: 0px 0px 0px 0px black;
+    transform: translate(5px, 5px);
+}
+
+button:active{
+    box-shadow: 0px 0px 0px 0px black;
+    transform: translate(5px, 5px);
+}
+
+section{
+    flex-direction: column;
+    height: 100%;
+    width: 90%;
+}
+
+nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 2rem 0;
+    padding: 0 2rem;
+    width: 100%;
+    box-sizing: border-box;
+    position: relative;
+}
+
+nav i{
+    font-size: 2rem;
+}
+
+section .text-container{
+    width: 90%;
+    margin: auto;
+}
+
+section span{
+    width: 100%;
+    font-size: 1.5rem;
+    font-family: "Poppins", sans-serif;
+    border: none;
+    outline: none;
+}
+
+.footer-buttons-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 2rem 0;
+    padding: 0 2rem;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.mdiddle-container{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.mdiddle-container button{
+    margin: 0 1rem;
+
+}
+
+progress{
+    width: 100%;
+    border: 2px solid black;
+    outline: none;
+    background-color: white;
+    border-radius: 3px;
+}
+
+progress::-moz-progress-bar {
+    background: black;
+}
+
+progress::-webkit-progress-value {
+    background: black;
+}
+
+progress::-webkit-progress-bar {
+    background-color: white;
+    color: black;
+}
+
+.progress-bar{
+    width: 70%;
+    border-radius: 2px;
+    margin: 0 2rem;
+}
+
+.checker-container{
+    width: 100%;
+    position: relative;
+}
+
+.checker-container div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    width: 100%;
+}
+.checker-container .correct-container{
+    display: none;
+    color: #02640E;
+    i{
+        font-size: 8rem;
+    }
+}
+.checker-container .wrong-container{
+    display: none;
+    color: #A51D2A;
+    i{
+        font-size: 8rem;
+    }
+}
+
+.correct{
+    background-color: rgba(3, 138, 19, 0.5);
+}
+
+.wrong{
+    background-color: rgba(163, 16, 31, 0.623);
+}
+
+
+/*Extra small devices breakpoint (xs)*/
+@media only screen and (max-width: 576px) {
+    .checker-container .wrong-container i{
+        font-size: 3rem;
+
+    }
+    .checker-container .correct-container i{
+        font-size: 3rem;
+
+    }
+    nav{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        justify-items: right;
+        row-gap: 1rem;
+    }
+    nav button{
+        justify-self: left;
+    }
+    nav .progress-bar{
+        grid-row-start: 1;
+        grid-row-end: 2;
+        grid-column-start: 1;
+        grid-column-end: 3;
+
+        margin: 0;
+        width: 100%;
+    }
+
+    section span{
+        font-size: 1rem;
+    }
+    button{
+        font-size: 0.8rem;
+        border-radius: 3px;
+        box-shadow: 3px 3px 0px 0px black;
+    }
+    nav{
+        padding: 0 1rem;
+    }
+    nav i{
+        font-size: 1.5rem;
+    }
+    .footer-buttons-container button{
+        padding: 0.5rem 0.5rem;
+    }
+    .footer-buttons-container{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+        grid-gap: 1rem;
+    }
+    .previous{
+        grid-row-start: 1;
+        grid-row-end: 2;
+        grid-column-start: 1;
+        grid-column-end: 2;
+    }
+
+    .mdiddle-container{
+        grid-row-start: 2;
+        grid-row-end: 4;
+        grid-column-start: 1;
+        grid-column-end: 3;
+
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        grid-gap: 1rem;
+    }
+    .mdiddle-container button{
+        margin: 0;
+    }
+    .mdiddle-container #check{
+        grid-row: 2/3;
+        grid-column: 1 / 3;
+    }
+}
+
+@media only screen and (min-width: 576px) {
+    .checker-container .wrong-container i{
+        font-size: 5rem;
+
+    }
+    .checker-container .correct-container i{
+        font-size: 5rem;
+
+    }
+    section span{
+        font-size: 1rem;
+    }
+    button{
+        font-size: 0.8rem;
+        border-radius: 5px;
+        box-shadow: 5px 5px 0px 0px black;
+    }
+    nav{
+        padding: 0 1rem;
+    }
+    nav i{
+        font-size: 1.5rem;
+    }
+    .footer-buttons-container button{
+        padding: 0.5rem 0.5rem;
+    }
+    .footer-buttons-container{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+        grid-gap: 1rem;
+    }
+    .previous{
+        grid-row-start: 1;
+        grid-row-end: 2;
+        grid-column-start: 1;
+        grid-column-end: 2;
+    }
+
+    .mdiddle-container{
+        grid-row-start: 2;
+        grid-row-end: 4;
+        grid-column-start: 1;
+        grid-column-end: 3;
+
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        grid-gap: 1rem;
+    }
+    .mdiddle-container button{
+        margin: 0;
+    }
+    .mdiddle-container #check{
+        grid-row: 2/3;
+        grid-column: 1 / 3;
+    }
+}
+
+/*Small devices breakpoint (sm)*/
+@media only screen and (min-width: 768px) {
+    .checker-container .wrong-container i{
+        font-size: 8rem;
+
+    }
+    .checker-container .correct-container i{
+        font-size: 8rem;
+
+    }
+    .footer-buttons-container{
+        display: grid;
+        margin: 2rem 0;
+        padding: 0 2rem;
+        width: 100%;
+        box-sizing: border-box;
+        grid-template-rows: 1fr 1fr;
+    }
+    .footer-buttons-container button{
+        padding: 0.5rem 2rem;
+    }
+    .mdiddle-container{
+        display: flex;
+        width: 100%;
+    }
+    .mdiddle-container #reset{
+        margin: 0 1rem;
+        width: 100%;
+    }
+    .mdiddle-container button{
+        width: 100%;
+    }
+    button{
+        padding: 0.5rem 2rem;
+        font-size: 1.5rem;
+        border: 2px solid black;
+        box-shadow: 5px 5px 0px 0px black;
+        border-radius: 5px;
+        background-color: white;
+        color: black;
+        cursor: pointer;
+    }
+    nav{
+        padding: 0 2rem;
+    }
+    section span{
+        font-size: 1.5rem;
+    }
+    nav i{
+        font-size: 2rem;
+    }
+}
+
+@media only screen and (min-width: 1155px) {
+    .checker-container .wrong-container i{
+        font-size: 8rem;
+
+    }
+    .checker-container .correct-container i{
+        font-size: 8rem;
+
+    }
+    .footer-buttons-container{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 2rem 0;
+        padding: 0 2rem;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    .footer-buttons-container button{
+        padding: 0.5rem 2rem;
+    }
+    .mdiddle-container{
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .mdiddle-container button{
+        margin: 0 1rem;
+        width: auto;
+    }
+    .mdiddle-container #reset{
+        width: auto;
+    }
+    button{
+        padding: 0.5rem 2rem;
+        font-size: 1.5rem;
+        border: 2px solid black;
+        box-shadow: 5px 5px 0px 0px black;
+        border-radius: 5px;
+        background-color: white;
+        color: black;
+        cursor: pointer;
+    }
+    nav{
+        padding: 0 2rem;
+    }
+    section span{
+        font-size: 1.5rem;
+    }
+    nav i{
+        font-size: 2rem;
+    }
+}
