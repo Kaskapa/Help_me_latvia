@@ -1,3 +1,7 @@
+import { inject } from "@vercel/analytics"
+
+inject();
+
 const filePathCorrect = 'Data/correct.txt';
 const filePathWrong = 'Data/wrong.txt';
 
@@ -8,7 +12,6 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 let wrong_element = document.getElementById('wrong');
-let correct_element = document.getElementById('correct');
 let wrong_data = [];
 let correct_data = [];
 
