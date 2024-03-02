@@ -1,7 +1,3 @@
-import { inject } from "@vercel/analytics"
-
-inject();
-
 const filePathCorrect = 'Data/correct.txt';
 const filePathWrong = 'Data/wrong.txt';
 
