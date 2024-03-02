@@ -120,7 +120,7 @@ checkButton.addEventListener('click', function(){
 
 let answerButton = document.getElementById('answer');
 answerButton.addEventListener('click', function(){
-    if(wrong_element.style.display !== 'none' && correctMessage.style.display === "none"){
+    if((wrong_element.style.display !== 'none' && correctMessage.style.display === "none") || (wrong_element.style.display === '' && wrongMessage.style.display === "")){
 
         let current = localStorage.getItem('current');
         users_input = wrong_element.innerText.split('');
@@ -142,9 +142,7 @@ answerButton.addEventListener('click', function(){
 
                 replaceElement.appendChild(correctSpan);
 
-                console.log('Correct: ' + users_input[i] + ' ' + correct_entry[i]);
             }else{
-                console.log('Wrong: ' + users_input[i] + ' ' + correct_entry[i]);
                 users_input.splice(i, 0, correct_entry[i]);
 
                 let wrongSpan = document.createElement('span');
