@@ -13,11 +13,11 @@ p_tags = [p.text.strip() for p in soup.find_all("p")]
 text_Be_like = " ".join(p_tags)
 
 #sentences = regex.split(r'(?<=[^\p{Lu}].[.?!]) +(?=[\p{Lu}«])', text_Be_like)
-sentences = regex.split(r'(?<=[^\p{Lu}].[.?!»]) +(?=[\p{Lu}«\p{Lu}])', text_Be_like)
+sentences = regex.split(r'(?<=[^\p{Lu}].[.?!»])(?<!,»)(?<![!]»)(?<![?]») +(?=[\p{Lu}«\p{Lu}])', text_Be_like)
 
 temp = ""
 
-file = open("correct.txt", "a", encoding="utf-8")
+file = open("wrong.txt", "a", encoding="utf-8")
 for sentence in sentences:
     if(len(sentence) > 400):
         continue
@@ -34,9 +34,10 @@ for sentence in sentences:
         sentence = temp
         temp = ""
     print(sentence)
-    # sentence = sentence.replace(",", "")
-    # sentence = sentence.replace("- ", "")
-    # sentence = sentence.replace("— ", "")
-    # sentence = sentence.replace(";", "")
-    # sentence = sentence.replace(":", "")
+    sentence = regex.sub(r'\. (?=[\p{Ll}])', ' ', sentence)
+    sentence = sentence.replace(",", "")
+    sentence = sentence.replace("- ", "")
+    sentence = sentence.replace("— ", "")
+    sentence = sentence.replace(";", "")
+    sentence = sentence.replace(":", "")
     file.write(sentence + "\n")
