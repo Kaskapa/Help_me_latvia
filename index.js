@@ -6,11 +6,27 @@ document.addEventListener('DOMContentLoaded', function() {
         localStorage.setItem('current', 0);
     }
 });
-
+let correct_element = document.getElementById('correct');
 let wrong_element = document.getElementById('wrong');
 let wrong_data = [];
 let correct_data = [];
 
+let checkButton = document.getElementById('check');
+let correctMessage = document.querySelector(".checker-container .correct-container");
+let wrongMessage = document.querySelector(".checker-container .wrong-container");
+
+document.addEventListener('keydown', function(){
+    correctMessage.style.display = 'none';
+    wrongMessage.style.display = 'none';
+})
+document.addEventListener('mousedown', function(){
+    correctMessage.style.display = 'none';
+    wrongMessage.style.display = 'none';
+})
+document.addEventListener('touchstart', function(){
+    correctMessage.style.display = 'none';
+    wrongMessage.style.display = 'none';
+})
 
 fetch(filePathCorrect)
     .then(response => response.text())
@@ -75,9 +91,10 @@ previousButton.addEventListener('click', function(){
         correctMessage.style.display = 'none';
         wrongMessage.style.display = 'none';
 
-        let textContainer = document.querySelector('.text-container');
-        textContainer.removeChild(document.getElementById('correct_text'));
+        // let textContainer = document.querySelector('.text-container');
+        // textContainer.removeChild(document.getElementById('correct_text'));
         wrong_element.style.display = 'block';
+        correct_element.style.display = 'none';
     }
 });
 
@@ -93,18 +110,18 @@ nextButton.addEventListener('click', function(){
         correctMessage.style.display = 'none';
         wrongMessage.style.display = 'none';
 
-        let textContainer = document.querySelector('.text-container');
-        textContainer.removeChild(document.getElementById('correct_text'));
+        // let textContainer = document.querySelector('.text-container');
+        // textContainer.removeChild(document.getElementById('correct_text'));
         wrong_element.style.display = 'block';
+        correct_element.style.display = 'none';
     }
 });
 
-let checkButton = document.getElementById('check');
-let correctMessage = document.querySelector(".checker-container .correct-container");
-let wrongMessage = document.querySelector(".checker-container .wrong-container");
+
+
 
 checkButton.addEventListener('click', function(){
-    if(wrong_element.style.display !== 'none'){
+    if(correct_element.style.display === 'none'){
         let current = localStorage.getItem('current');
         if(correct_data[current] === wrong_element.innerText){
             wrong_element.contentEditable = false;
@@ -120,43 +137,59 @@ checkButton.addEventListener('click', function(){
 let answerButton = document.getElementById('answer');
 answerButton.addEventListener('click', function(){
     if((wrong_element.style.display !== 'none' && correctMessage.style.display === "none") || (wrong_element.style.display === '' && wrongMessage.style.display === "")){
-
         let current = localStorage.getItem('current');
         users_input = wrong_element.innerText.split('');
         correct_entry = correct_data[current].split('');
 
-        let textContainer = document.querySelector('.text-container');
-        let replaceElement = document.createElement('span');
-        replaceElement.id = 'correct_text';
-        replaceElement.spellcheck = false;
-        replaceElement.contentEditable = false;
-        replaceElement.role = 'textbox';
+        // let textContainer = document.querySelector('.text-container');
+        // let replaceElement = document.createElement('span');
+        // replaceElement.id = 'correct_text';
+        // replaceElement.spellcheck = false;
+        // replaceElement.contentEditable = false;
+        // replaceElement.role = 'textbox';
 
-        for (let i = 0; i < correct_entry.length; i++){
-            if(users_input[i] === correct_entry[i]){
-                let correctSpan = document.createElement('span');
-                correctSpan.classList.add('correct');
+        let correct_element = document.getElementById('correct');
+        correct_element.innerText = correct_data[current];
+        correct_element.style.display = 'block';
 
-                correctSpan.innerText = users_input[i];
+        // let minussUser = 0;
+        // let minussCorrect = 0;
 
-                replaceElement.appendChild(correctSpan);
+        // let max = users_input.length > correct_entry.length ? users_input.length : correct_entry.length;
 
-            }else{
-                users_input.splice(i, 0, correct_entry[i]);
+        // for (let i = 0; i < max; i++){
+        //     if(users_input[i - minussUser] === correct_entry[i-minussCorrect]){
+        //         let correctSpan = document.createElement('span');
+        //         correctSpan.classList.add('correct');
 
-                let wrongSpan = document.createElement('span');
-                wrongSpan.classList.add('wrong');
-                wrongSpan.innerText = users_input[i];
+        //         correctSpan.innerText = users_input[i-minussUser];
 
-                replaceElement.appendChild(wrongSpan);
-            }
-        }
+        //         replaceElement.appendChild(correctSpan);
+        //     }else if(users_input[i-minussUser] !== correct_entry[i-minussCorrect] && (users_input[i-minussUser] !== ',')){
+        //         let wrongSpan = document.createElement('span');
+        //         wrongSpan.classList.add('wrong');
 
-        textContainer.appendChild(replaceElement);
+        //         wrongSpan.innerText = correct_entry[i-minussCorrect];
 
-        wrong_element.style.display = 'none';
+        //         replaceElement.appendChild(wrongSpan);
 
-        wrong_element.contentEditable = false;
+        //         minussUser++;
+        //     }else if(users_input[i-minussUser] !== correct_entry[i-minussCorrect] && correct_entry[i-minussCorrect] === ' '){
+        //         let wrongSpan = document.createElement('span');
+        //         wrongSpan.classList.add('wrong-input');
+
+        //         wrongSpan.innerText = users_input[i-minussUser];
+
+        //         replaceElement.appendChild(wrongSpan);
+
+        //         minussCorrect++;
+        //         max++;
+        //     }
+        // }
+
+        // wrong_element.style.display = 'none';
+
+        // wrong_element.contentEditable = false;
         correctMessage.style.display = 'none';
         wrongMessage.style.display = 'none';
     }
@@ -165,12 +198,14 @@ answerButton.addEventListener('click', function(){
 let resetButton = document.getElementById('reset');
 resetButton.addEventListener('click', function(){
     let current = localStorage.getItem('current');
+    let correct_element = document.getElementById('correct');
     wrong_element.innerText = wrong_data[current];
     wrong_element.contentEditable = true;
     correctMessage.style.display = 'none';
     wrongMessage.style.display = 'none';
 
-    let textContainer = document.querySelector('.text-container');
-    textContainer.removeChild(document.getElementById('correct_text'));
+    // let textContainer = document.querySelector('.text-container');
+    // textContainer.removeChild(document.getElementById('correct_text'));
     wrong_element.style.display = 'block';
+    correct_element.style.display = 'none';
 })

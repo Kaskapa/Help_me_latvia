@@ -17,7 +17,7 @@ sentences = regex.split(r'(?<=[^\p{Lu}].[.?!»])(?<!,»)(?<![!]»)(?<![?]») +(?
 
 temp = ""
 
-file = open("wrong.txt", "a", encoding="utf-8")
+file = open("correct.txt", "a", encoding="utf-8")
 for sentence in sentences:
     if(len(sentence) > 400):
         continue
@@ -35,9 +35,10 @@ for sentence in sentences:
         temp = ""
     print(sentence)
     sentence = regex.sub(r'\. (?=[\p{Ll}])', ' ', sentence)
-    sentence = sentence.replace(",", "")
-    sentence = sentence.replace("- ", "")
-    sentence = sentence.replace("— ", "")
-    sentence = sentence.replace(";", "")
-    sentence = sentence.replace(":", "")
+    sentence = sentence.replace("—", "-")
+
+    # sentence = sentence.replace(",", "")
+    # sentence = sentence.replace("- ", "")
+    # sentence = sentence.replace(";", "")
+    # sentence = sentence.replace(":", "")
     file.write(sentence + "\n")

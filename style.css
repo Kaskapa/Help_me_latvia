@@ -126,7 +126,7 @@ progress::-webkit-progress-bar {
 }
 
 .progress-bar{
-    width: 70%;
+    width: 90%;
     border-radius: 2px;
     margin: 0 2rem;
 }
@@ -166,6 +166,16 @@ progress::-webkit-progress-bar {
     background-color: rgba(163, 16, 31, 0.623);
 }
 
+.wrong-input{
+    background-color: rgba(218, 133, 21, 0.623);
+}
+
+#correct{
+    font-weight: 700;
+    font-style: italic;
+    color: #02640E;
+    margin-bottom: 2rem;
+}
 
 /*Extra small devices breakpoint (xs)*/
 @media only screen and (max-width: 576px) {
